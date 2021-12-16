@@ -1,19 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<div class="d-flex flex-column min-vh-100 bg-primary">
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary shadow-sm bg-opacity-75">
+            <div class="container">
+                <a class="navbar-brand" href="#">Bid'oo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about-us">A propos de nous</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auctions">Enchères</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-outline-dark" role="button" href="/auctions">C'est parti !</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main role="main" class="flex-grow-1 py-5">
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center pb-3">
+        <p class="col-md-4 mb-0">© 2021 Company, Inc</p>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-dark">Home</a></li>
+            <li class="nav-item"><a href="/auctions" class="nav-link px-2 text-dark">Auctions</a></li>
+            <li class="nav-item"><a href="/about-us" class="nav-link px-2 text-dark">About</a></li>
+            <li class="nav-item"><a href="/legal-information" class="nav-link px-2 text-dark">Legal information</a></li>
+        </ul>
+    </footer>
+</div>
+</div>
+
+
+</body>
 </html>

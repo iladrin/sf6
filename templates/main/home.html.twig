@@ -3,5 +3,47 @@
 {% block title 'Home' %}
 
 {% block body %}
-    <h1>Homepage</h1>
+    <div class="d-flex align-items-center position-relative row gap-5" data-controller="hello">
+        <div class="fw-light col">
+            <div class="mb-5">
+                <h1 class="display-4 pb-2">Enchères en ligne</h1>
+                <span class="opacity-75">Découvrez nos enchères et misez sur vos envies.</span>
+            </div>
+            <div class="row">
+                <div class="col bg-light bg-opacity-25 m-2"><p class="fw-light py-2">étape 1</p>
+                    <p class="fw-lighter">Créez votre compte</p></div>
+                <div class="col bg-light bg-opacity-25 m-2"><p class="fw-light py-2">étape 2</p>
+                    <p class="fw-lighter">Misez sur des produits</p></div>
+                <div class="col bg-light bg-opacity-25 m-2"><p class="fw-light py-2">étape 3</p>
+                    <p class="fw-lighter">Recevez le résultat de vos enchères</p></div>
+                <div class="col bg-light bg-opacity-25 m-2"><p class="fw-light py-2">étape 4</p>
+                    <p class="fw-lighter">Recevez vos produits</p></div>
+            </div>
+            <hr>
+            <p>Voir le <a href="/legal-information" class="text-dark">règlement</a> pour plus de détails</p>
+        </div>
+
+        <div id="scene" class="parallax col opacity-75">
+            <div data-depth="0.40" class="parallax-layer">
+                <img
+                        src="{{ asset('build/images/auction-ametrine-pip.png') }}"
+                        alt="gems">
+            </div>
+            <div data-depth="0.20" class="parallax-layer">
+                <img
+                        src="{{ asset('build/images/auction-clock-pip.png') }}"
+                        alt="jewelry">
+            </div>
+            <div data-depth="0.05" class="parallax-layer">
+                <img
+                        src="{{ asset('build/images/auction-shoes-pip.png') }}"
+                        alt="fashion">
+            </div>
+            <div data-depth="0.30" class="parallax-layer">
+                <img
+                        src="{{ asset('build/images/auction-seats-pip.png') }}"
+                        alt="decoration">
+            </div>
+        </div>
+    </div>
 {% endblock %}
