@@ -1,0 +1,9 @@
+$primary: #ded6d4;
+$link-color: #000;
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+.parallax-layer>img {
+  display: block;
+  width: 100%;
+}

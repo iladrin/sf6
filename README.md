@@ -21,6 +21,11 @@ $ make
 
 Voilà!
 
+En mode développement, n’oubliez pas de régénérer vos `assets` si vous changez les sources :
+
+```bash
+$ make assets-watch
+```
 
 ## II. Synchronisation du projet
 

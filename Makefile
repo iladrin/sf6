@@ -1,10 +1,11 @@
 SYMFONY=symfony
+EXEC=$(SYMFONY) run
 CONSOLE=$(SYMFONY) console
 PHP=$(SYMFONY) php
 PHPCSFIXER?=$(SYMFONY) php -d memory_limit=1024m vendor/bin/php-cs-fixer
 COMPOSER=$(SYMFONY) composer
 
-.PHONY: help deploy clean start stop status logs browse phpcs phpcsfix security
+.PHONY: help deploy clean start stop status logs browse phpcs phpcsfix security assets assets-watch
 .DEFAULT_GOAL := help
 
 help:
@@ -34,12 +35,12 @@ browse:									## Open the app in your web browser
 ## Deployment commands
 ##---------------------------
 
-deploy: .env.local vendor				## Deploy the whole project
+deploy: .env.local vendor assets				## Deploy the whole project
 	@echo "\n\033[35m* Project ready\033[0m"
 	@echo "\033[35m\n-> Try a \033[34mmake start\033[35m, then \033[34mmake browse\033[0m.\033[0m"
 
 clean:									## Remove the generated files
-	rm -rf vendor/ var/log/ var/cache/
+	rm -rf vendor/ var/log/ var/cache/ node_modules/ public/build/
 
 .env.local: .env
 	@echo "\n\033[35m* Creating \033[34m.env.local\033[35m file, based upon your \033[34m.env\033[35m file.\033[0m"
@@ -52,6 +53,18 @@ vendor/composer/installed.php: composer.lock
 
 composer.lock: composer.json
 	@echo composer.lock is not up to date.
+
+assets: public/build
+
+assets-watch: assets					## Regenerate web assets as long as they change
+	$(EXEC) yarn dev-server
+
+node_modules: yarn.lock
+	$(EXEC) yarn install
+
+public/build: node_modules
+	@echo "\n\033[35m* Deploying assets.\033[0m"
+	$(EXEC) yarn dev
 
 #vendor/autoload.php: composer.lock
 #	@echo "\n\033[35m* Installing PHP dependencies\033[0m"
